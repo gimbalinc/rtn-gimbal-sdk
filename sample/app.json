@@ -1,0 +1,7 @@
+{
+  "name": "RtnGimbalSdkSample",
+  "displayName": "rtn-gimbal-sdk Sample",
+  "ios": {
+    "userInterfaceStyle": "automatic"
+  }
+}
