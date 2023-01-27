@@ -93,3 +93,20 @@ export const GimbalDebugger: GimbalDebuggerSpec = GimbalDebuggerModule
         },
       }
     );
+
+import type { Spec as AnalyticsManagerSpec } from './NativeAnalyticsManager';
+
+const AnalyticsManagerModule = isTurboModuleEnabled
+  ? require('./NativeAnalyticsManager').default
+  : NativeModules.RtnGimbalAnalyticsManager;
+
+export const AnalyticsManager: AnalyticsManagerSpec = AnalyticsManagerModule
+  ? AnalyticsManagerModule
+  : new Proxy(
+      {},
+      {
+        get() {
+          throw new Error(LINKING_ERROR);
+        },
+      }
+    );

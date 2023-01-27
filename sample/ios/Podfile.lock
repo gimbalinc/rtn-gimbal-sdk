@@ -389,7 +389,7 @@ PODS:
     - React-Core
   - RNPermissions (3.6.1):
     - React-Core
-  - rtn-gimbal-sdk (0.1.0):
+  - rtn-gimbal-sdk (0.1.1):
     - Gimbal
     - React-Core
   - SocketRocket (0.6.0)
@@ -630,7 +630,7 @@ SPEC CHECKSUMS:
   ReactCommon: 349be31adeecffc7986a0de875d7fb0dcf4e251c
   RNCAsyncStorage: 8616bd5a58af409453ea4e1b246521bb76578d60
   RNPermissions: dcdb7b99796bbeda6975a6e79ad519c41b251b1c
-  rtn-gimbal-sdk: a2ee0acf9c6206104eb596d2cc90897361e5f6f6
+  rtn-gimbal-sdk: 9cdfbaa9475ea46599daf0098c8cbc710d0fa1c8
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
   Yoga: 99caf8d5ab45e9d637ee6e0174ec16fbbb01bcfc
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a

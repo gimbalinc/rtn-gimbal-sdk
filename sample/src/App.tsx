@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { TabView, SceneMap } from 'react-native-tab-view';
-import { Gimbal, GimbalDebugger, PlaceManager, PlaceManagerEvent } from 'rtn-gimbal-sdk';
+import { Gimbal, GimbalDebugger, PlaceManager, PlaceManagerEvent, AnalyticsManager } from 'rtn-gimbal-sdk';
 import type { Visit } from 'rtn-gimbal-sdk';
 // CommunicationManager
 
@@ -82,6 +82,9 @@ export function AppFactory(
       this._addPlaceListeners();
       this._addCommunicationListeners();
       this._updatePermissionState();
+
+      // AnalyticsManager.setUserAnalyticsID("YOUR_ANALYTICS_ID");
+      AnalyticsManager.deleteUserAnalyticsID();
     }
 
     componentWillUnmount() {
@@ -346,5 +349,5 @@ const styles = StyleSheet.create({
   },
   important: {
     fontWeight: 'bold',
-  },
+  }
 });
