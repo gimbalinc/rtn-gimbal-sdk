@@ -10,13 +10,21 @@ import {
 } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { TabView, SceneMap } from 'react-native-tab-view';
-import { Gimbal, GimbalDebugger, PlaceManager, PlaceManagerEvent, AnalyticsManager } from 'rtn-gimbal-sdk';
+import { 
+  Gimbal,
+  GimbalDebugger,
+  PlaceManager,
+  PlaceManagerEvent,
+  AnalyticsManager,
+  PrivacyManager
+} from 'rtn-gimbal-sdk';
 import type { Visit } from 'rtn-gimbal-sdk';
 // CommunicationManager
 
 import { VisitsList } from './components/visits-list';
 import { LocationPermission, Permissions } from './utils/permissions';
 import { EventTranscript, EventType } from './utils/event-transcript';
+import type { Int32 } from 'react-native/Libraries/Types/CodegenTypes';
 
 interface AppProps {}
 
@@ -84,7 +92,11 @@ export function AppFactory(
       this._updatePermissionState();
 
       // AnalyticsManager.setUserAnalyticsID("YOUR_ANALYTICS_ID");
-      AnalyticsManager.deleteUserAnalyticsID();
+      // AnalyticsManager.deleteUserAnalyticsID();
+
+      // this._setPlacesConsent(PrivacyManager.getConstants().CONSENT_STATE_GRANTED);
+      this._logPlacesConsentState();
+      this._logConsentRequirement();
     }
 
     componentWillUnmount() {
@@ -236,6 +248,57 @@ export function AppFactory(
       });
       this._communicationListeners = [];
     }
+
+    
+    async _logConsentRequirement() {
+      try {
+        const requirement = await PrivacyManager.getGdprConsentRequirement();
+  
+        switch (requirement) {
+          case PrivacyManager.getConstants().GDPR_CONSENT_REQUIRED:
+            console.log("GDPR consent required");
+            break;
+          case PrivacyManager.getConstants().GDPR_CONSENT_NOT_REQUIRED:
+            console.log("GDPR consent not required");
+            break;
+          case PrivacyManager.getConstants().GDPR_CONSENT_REQUIREMENT_UNKNOWN:
+            console.log("GDPR consent requirement unknown");
+            break;
+          default:
+            console.log("GDPR consent requirement cannot be determined.");
+        }
+      } catch (err) {
+        console.log(`Error retrieving GDPR consent requirement: ${err}`);
+      }
+    }
+
+    async _logPlacesConsentState() {
+      try {
+        const consentState = await PrivacyManager.getUserConsent(
+          PrivacyManager.getConstants().CONSENT_TYPE_PLACES,
+        );
+  
+        switch (consentState) {
+          case PrivacyManager.getConstants().CONSENT_STATE_GRANTED:
+            console.log("Places consent state: granted");
+            break;
+          case PrivacyManager.getConstants().CONSENT_STATE_REFUSED:
+            console.log("Places consent state: refused");
+            break;
+          case PrivacyManager.getConstants().CONSENT_STATE_UNKNOWN:
+            console.log("Places consent state: unknown");
+            break;
+          default:
+            console.log("Places consent state: --");
+        }
+      } catch (err) {
+        console.log(`Error getting user consent: ${err}`);
+      }
+    }
+
+     _setPlacesConsent(consentState: Int32) {
+      PrivacyManager.setUserConsent(PrivacyManager.getConstants().CONSENT_TYPE_PLACES, consentState);
+     }
   }
 
   return App;

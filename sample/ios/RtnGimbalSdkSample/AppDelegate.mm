@@ -45,7 +45,7 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
   bridge.surfacePresenter = _bridgeAdapter.surfacePresenter;
 #endif
 
-  [Gimbal setAPIKey:@"1011c0c7-4923-41e1-a879-a0da9a7b38f3" options:nil];
+  [Gimbal setAPIKey:@"YOUR_API_KEY" options:nil];
 
   NSDictionary *initProps = [self prepareInitialProps];
   UIView *rootView = RCTAppSetupDefaultRootView(bridge, @"RtnGimbalSdkSample", initProps);

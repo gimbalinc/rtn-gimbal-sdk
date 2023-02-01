@@ -9,6 +9,8 @@ const LINKING_ERROR =
 // @ts-expect-error
 const isTurboModuleEnabled = global.__turboModuleProxy != null;
 
+/* ============================================================================================= */
+
 import type { Spec as GimbalSpec } from './NativeGimbal';
 
 const GimbalModule = isTurboModuleEnabled
@@ -25,6 +27,8 @@ export const Gimbal: GimbalSpec = GimbalModule
         },
       }
     );
+
+/* ============================================================================================= */
 
 import type {
   Spec as PlaceManagerSpec,
@@ -77,6 +81,8 @@ export const PlaceManagerEvent: PlaceManagerEventSpec = {
   LOCATION_DETECTED: EVENT_LOCATION_DETECTED,
 };
 
+/* ============================================================================================= */
+
 import type { Spec as GimbalDebuggerSpec } from './NativeGimbalDebugger';
 
 const GimbalDebuggerModule = isTurboModuleEnabled
@@ -94,6 +100,8 @@ export const GimbalDebugger: GimbalDebuggerSpec = GimbalDebuggerModule
       }
     );
 
+/* ============================================================================================= */
+
 import type { Spec as AnalyticsManagerSpec } from './NativeAnalyticsManager';
 
 const AnalyticsManagerModule = isTurboModuleEnabled
@@ -102,6 +110,24 @@ const AnalyticsManagerModule = isTurboModuleEnabled
 
 export const AnalyticsManager: AnalyticsManagerSpec = AnalyticsManagerModule
   ? AnalyticsManagerModule
+  : new Proxy(
+      {},
+      {
+        get() {
+          throw new Error(LINKING_ERROR);
+        },
+      }
+    );
+/* ============================================================================================= */
+
+import type { Spec as PrivacyManagerSpec } from './NativePrivacyManager';
+
+const PrivacyManagerModule = isTurboModuleEnabled
+  ? require('./NativePrivacyManager').default
+  : NativeModules.RtnGimbalPrivacyManager;
+
+export const PrivacyManager: PrivacyManagerSpec = PrivacyManagerModule
+  ? PrivacyManagerModule
   : new Proxy(
       {},
       {
