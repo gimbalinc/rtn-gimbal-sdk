@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { TabView, SceneMap } from 'react-native-tab-view';
-import { 
+import {
   Gimbal,
   GimbalDebugger,
   PlaceManager,
@@ -249,11 +249,11 @@ export function AppFactory(
       this._communicationListeners = [];
     }
 
-    
+
     async _logConsentRequirement() {
       try {
         const requirement = await PrivacyManager.getGdprConsentRequirement();
-  
+
         switch (requirement) {
           case PrivacyManager.getConstants().GDPR_CONSENT_REQUIRED:
             console.log("GDPR consent required");
@@ -265,7 +265,7 @@ export function AppFactory(
             console.log("GDPR consent requirement unknown");
             break;
           default:
-            console.log("GDPR consent requirement cannot be determined.");
+            console.log(`GDPR consent requirement cannot be determined: ${requirement}`);
         }
       } catch (err) {
         console.log(`Error retrieving GDPR consent requirement: ${err}`);
@@ -277,7 +277,7 @@ export function AppFactory(
         const consentState = await PrivacyManager.getUserConsent(
           PrivacyManager.getConstants().CONSENT_TYPE_PLACES,
         );
-  
+
         switch (consentState) {
           case PrivacyManager.getConstants().CONSENT_STATE_GRANTED:
             console.log("Places consent state: granted");
