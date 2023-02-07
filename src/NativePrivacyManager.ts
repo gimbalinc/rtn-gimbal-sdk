@@ -18,4 +18,20 @@ export interface Spec extends TurboModule {
     };
 }
 
+export type ConsentStateSpec = {
+    GRANTED: Int32,
+    REFUSED: Int32,
+    UNKNOWN: Int32
+};
+
+export type GDPRConsentRequirementSpec = {
+    NOT_REQUIRED: Int32,
+    REQUIRED: Int32,
+    UNKNOWN: Int32
+};
+
+export type ConsentTypeSpec = {
+    PLACES: Int32
+};
+
 export default TurboModuleRegistry.getEnforcing<Spec>('RtnGimbalPrivacyManager');

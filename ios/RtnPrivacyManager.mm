@@ -64,23 +64,32 @@ RCT_REMAP_METHOD(getGdprConsentRequirement, getGdprConsentRequirementWithResolve
     resolve([NSNumber numberWithInteger:consentRequirement]);
 }
 
-RCT_EXPORT_METHOD(setUserConsent:(GMBLConsentType)consentType
-                  toState:(GMBLConsentState)consentState)
+RCT_EXPORT_METHOD(setUserConsent:(double)consentType
+                  toState:(double)consentState)
 {
-    [GMBLPrivacyManager setUserConsentFor:consentType toState:consentState];
+    [GMBLPrivacyManager setUserConsentFor:(GMBLConsentType)consentType toState:(GMBLConsentState)consentState];
 }
 
-RCT_EXPORT_METHOD(getUserConsent:(GMBLConsentType)consentType
+RCT_EXPORT_METHOD(getUserConsent:(double)consentType
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
 {
-    resolve([NSNumber numberWithInteger:[GMBLPrivacyManager userConsentFor:consentType]]);
+    resolve([NSNumber numberWithInteger:[GMBLPrivacyManager userConsentFor:(GMBLConsentType)consentType]]);
 }
 
 + (BOOL)requiresMainQueueSetup
 {
   return YES;  // necessary because we're implementing constantsToExport
 }
+
+// Don't compile this code when we build for the old architecture.
+#ifdef RCT_NEW_ARCH_ENABLED
+- (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
+    (const facebook::react::ObjCTurboModule::InitParams &)params
+{
+    return std::make_shared<facebook::react::NativePrivacyManagerSpecJSI>(params);
+}
+#endif
 
 @end
 

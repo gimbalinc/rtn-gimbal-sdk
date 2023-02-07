@@ -16,7 +16,10 @@ import {
   PlaceManager,
   PlaceManagerEvent,
   AnalyticsManager,
-  PrivacyManager
+  PrivacyManager,
+  ConsentState,
+  GDPRConsentRequirement,
+  ConsentType
 } from 'rtn-gimbal-sdk';
 import type { Visit } from 'rtn-gimbal-sdk';
 // CommunicationManager
@@ -94,7 +97,7 @@ export function AppFactory(
       // AnalyticsManager.setUserAnalyticsID("YOUR_ANALYTICS_ID");
       // AnalyticsManager.deleteUserAnalyticsID();
 
-      // this._setPlacesConsent(PrivacyManager.getConstants().CONSENT_STATE_GRANTED);
+      this._setPlacesConsent(ConsentState.GRANTED);
       this._logPlacesConsentState();
       this._logConsentRequirement();
     }
@@ -255,13 +258,13 @@ export function AppFactory(
         const requirement = await PrivacyManager.getGdprConsentRequirement();
 
         switch (requirement) {
-          case PrivacyManager.getConstants().GDPR_CONSENT_REQUIRED:
+          case GDPRConsentRequirement.REQUIRED:
             console.log("GDPR consent required");
             break;
-          case PrivacyManager.getConstants().GDPR_CONSENT_NOT_REQUIRED:
+          case GDPRConsentRequirement.NOT_REQUIRED:
             console.log("GDPR consent not required");
             break;
-          case PrivacyManager.getConstants().GDPR_CONSENT_REQUIREMENT_UNKNOWN:
+          case GDPRConsentRequirement.UNKNOWN:
             console.log("GDPR consent requirement unknown");
             break;
           default:
@@ -274,18 +277,16 @@ export function AppFactory(
 
     async _logPlacesConsentState() {
       try {
-        const consentState = await PrivacyManager.getUserConsent(
-          PrivacyManager.getConstants().CONSENT_TYPE_PLACES,
-        );
+        const consentState = await PrivacyManager.getUserConsent(ConsentType.PLACES);
 
         switch (consentState) {
-          case PrivacyManager.getConstants().CONSENT_STATE_GRANTED:
+          case ConsentState.GRANTED:
             console.log("Places consent state: granted");
             break;
-          case PrivacyManager.getConstants().CONSENT_STATE_REFUSED:
+          case ConsentState.REFUSED:
             console.log("Places consent state: refused");
             break;
-          case PrivacyManager.getConstants().CONSENT_STATE_UNKNOWN:
+          case ConsentState.UNKNOWN:
             console.log("Places consent state: unknown");
             break;
           default:
@@ -297,7 +298,7 @@ export function AppFactory(
     }
 
      _setPlacesConsent(consentState: Int32) {
-      PrivacyManager.setUserConsent(PrivacyManager.getConstants().CONSENT_TYPE_PLACES, consentState);
+      PrivacyManager.setUserConsent(ConsentType.PLACES, consentState);
      }
   }
 
