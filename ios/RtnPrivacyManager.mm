@@ -58,21 +58,22 @@ static NSInteger E_VALUE_UNKNOWN_TYPE = -1;
 
 #endif
 
-RCT_REMAP_METHOD(getGdprConsentRequirement, getGdprConsentRequirementWithResolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+RCT_EXPORT_METHOD(getGdprConsentRequirement:(RCTPromiseResolveBlock)resolve
+                                     reject:(RCTPromiseRejectBlock)reject)
 {
     GDPRConsentRequirement consentRequirement = [GMBLPrivacyManager gdprConsentRequirement];
     resolve([NSNumber numberWithInteger:consentRequirement]);
 }
 
 RCT_EXPORT_METHOD(setUserConsent:(double)consentType
-                  toState:(double)consentState)
+                  toState:(double)state)
 {
-    [GMBLPrivacyManager setUserConsentFor:(GMBLConsentType)consentType toState:(GMBLConsentState)consentState];
+    [GMBLPrivacyManager setUserConsentFor:(GMBLConsentType)consentType toState:(GMBLConsentState)state];
 }
 
 RCT_EXPORT_METHOD(getUserConsent:(double)consentType
-                  resolver:(RCTPromiseResolveBlock)resolve
-                  rejecter:(RCTPromiseRejectBlock)reject)
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
 {
     resolve([NSNumber numberWithInteger:[GMBLPrivacyManager userConsentFor:(GMBLConsentType)consentType]]);
 }
@@ -91,22 +92,4 @@ RCT_EXPORT_METHOD(getUserConsent:(double)consentType
 }
 #endif
 
-@end
-
-@implementation RCTConvert(GMBLConsentType)
-     RCT_ENUM_CONVERTER(GMBLConsentType,
-                        (@{ CONSENT_TYPE_PLACES : @(GMBLPlacesConsent)}),
-                        E_VALUE_UNKNOWN_TYPE,
-                        integerValue)
-@end
-
-@implementation RCTConvert(GMBLConsentState)
-     RCT_ENUM_CONVERTER(GMBLConsentState,
-                        (@{
-                            CONSENT_STATE_UNKNOWN : @(GMBLConsentUnknown),
-                            CONSENT_STATE_REFUSED : @(GMBLConsentRefused),
-                            CONSENT_STATE_GRANTED : @(GMBLConsentGranted),
-                        }),
-                        E_VALUE_UNKNOWN_STATE,
-                        integerValue)
 @end

@@ -99,7 +99,7 @@ export function AppFactory(
 
       this._setPlacesConsent(ConsentState.GRANTED);
       this._logPlacesConsentState();
-      this._logConsentRequirement();
+      this._logGDPRConsentRequirement();
     }
 
     componentWillUnmount() {
@@ -253,7 +253,7 @@ export function AppFactory(
     }
 
 
-    async _logConsentRequirement() {
+    async _logGDPRConsentRequirement() {
       try {
         const requirement = await PrivacyManager.getGdprConsentRequirement();
 

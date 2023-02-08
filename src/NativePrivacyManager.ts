@@ -8,13 +8,13 @@ export interface Spec extends TurboModule {
     getUserConsent(consentType: Int32): Promise<Int32>;
 
     readonly getConstants: () => {
-        CONSENT_STATE_UNKNOWN: Int32,
-        CONSENT_STATE_GRANTED: Int32,
-        CONSENT_STATE_REFUSED: Int32,
-        CONSENT_TYPE_PLACES: Int32,
-        GDPR_CONSENT_REQUIREMENT_UNKNOWN: Int32,
-        GDPR_CONSENT_NOT_REQUIRED: Int32, 
-        GDPR_CONSENT_REQUIRED: Int32
+        CONSENT_STATE_UNKNOWN: Int32;
+        CONSENT_STATE_GRANTED: Int32;
+        CONSENT_STATE_REFUSED: Int32;
+        CONSENT_TYPE_PLACES: Int32;
+        GDPR_CONSENT_REQUIREMENT_UNKNOWN: Int32;
+        GDPR_CONSENT_NOT_REQUIRED: Int32; 
+        GDPR_CONSENT_REQUIRED: Int32;
     };
 }
 
