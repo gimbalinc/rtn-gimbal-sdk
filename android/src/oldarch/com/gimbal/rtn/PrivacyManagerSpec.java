@@ -17,9 +17,9 @@ abstract class PrivacyManagerSpec extends ReactContextBaseJavaModule {
 
     public abstract void getGdprConsentRequirement(Promise promise);
 
-    public abstract void setUserConsent(int consentType, int state);
+    public abstract void setUserConsent(double consentType, double state);
 
-    public abstract void getUserConsent(int consentType, Promise promise);
+    public abstract void getUserConsent(double consentType, Promise promise);
 
     @Nullable
     public final Map<String, Object> getConstants() {
