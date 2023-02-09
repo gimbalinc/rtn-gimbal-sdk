@@ -5,5 +5,5 @@ export interface Spec extends TurboModule {
   setUserAnalyticsID(id: string): void;
   deleteUserAnalyticsID(): void;
 }
-  
+
 export default TurboModuleRegistry.getEnforcing<Spec>('RtnGimbalAnalyticsManager');

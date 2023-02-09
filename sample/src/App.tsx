@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React, { Component } from 'react';
 import {
   Button,
@@ -41,7 +40,7 @@ interface AppState {
 export function AppFactory(
   eventTranscript: EventTranscript,
   permissions: Permissions,
-  EventTranscriptView: typeof Component,
+  EventTranscriptView: typeof Component
 ) {
   class App extends Component<AppProps, AppState> {
     _placeListeners: EmitterSubscription[];
@@ -69,8 +68,8 @@ export function AppFactory(
       const Body = !this.state.notificationPermissionGranted
         ? RequestNotificationPermissionFactory(permissions, this.onNotificationResult)
         : !isLocationPermissionGranted
-            ? RequestLocationPermissionFactory(permissions, this.onLocationResult)
-            : BodyTabViewFactory(EventTranscriptView);
+        ? RequestLocationPermissionFactory(permissions, this.onLocationResult)
+        : BodyTabViewFactory(EventTranscriptView);
 
       return (
         <SafeAreaProvider>
@@ -140,7 +139,7 @@ export function AppFactory(
     }
 
     // Gimbal module
-    startGimbal = async() => {
+    startGimbal = async () => {
       if (!(await Gimbal.isStarted())) {
         console.log('Starting Gimbal');
         GimbalDebugger.enableDebugLogging();
@@ -150,7 +149,7 @@ export function AppFactory(
           new Date(),
           EventType.App,
           'Gimbal Started',
-          'Places / Communications / Est. Loc',
+          'Places / Communications / Est. Loc'
         );
       }
     };
@@ -170,9 +169,9 @@ export function AppFactory(
             new Date(visit.arrivalTimeInMillis),
             EventType.Place,
             visit.place.name,
-            'ARRIVED',
+            'ARRIVED'
           );
-        },
+        }
       );
 
       const visitStartWithDelaySubscription = placeEventEmitter.addListener(
@@ -184,10 +183,10 @@ export function AppFactory(
               new Date(visit.arrivalTimeInMillis),
               EventType.Place,
               visit.place.name,
-              `ARRIVED with delay: ${visit.delay} sec`,
+              `ARRIVED with delay: ${visit.delay} sec`
             );
           }
-        },
+        }
       );
 
       const visitEndSubscription = placeEventEmitter.addListener(
@@ -202,15 +201,15 @@ export function AppFactory(
             new Date(visit.departureTimeInMillis),
             EventType.Place,
             visit.place.name,
-            `DEPARTED with dwell: ${minutes}m${seconds < 10 ? '0' : ''}${seconds}s`,
+            `DEPARTED with dwell: ${minutes}m${seconds < 10 ? '0' : ''}${seconds}s`
           );
-        },
+        }
       );
 
       this._placeListeners.push(
         visitStartSubscription,
         visitStartWithDelaySubscription,
-        visitEndSubscription,
+        visitEndSubscription
       );
     }
 
@@ -221,31 +220,7 @@ export function AppFactory(
       this._placeListeners = [];
     }
 
-    _addCommunicationListeners() {
-      if (this._communicationListeners.length > 0) {
-        // eslint-disable-next-line no-useless-return
-        return;
-      }
-
-      // const communicationEventEmitter = new NativeEventEmitter(CommunicationManager);
-
-      // const notificationClickedSubscription = communicationEventEmitter.addListener(
-      //   'NotificationClicked',
-      //   communicationsList => {
-      //     console.log(`NotificationClicked: ${JSON.stringify(communicationsList)}`);
-      //     communicationsList.communications.forEach(communication =>
-      //       eventTranscript.append(
-      //         new Date(),
-      //         EventType.Communication,
-      //         communication.title,
-      //         'CLICKED'
-      //       )
-      //     );
-      //   }
-      // );
-      //
-      // this.communicationListeners = [notificationClickedSubscription];
-    }
+    _addCommunicationListeners() {}
 
     _removeCommunicationListeners() {
       this._communicationListeners.forEach((listener) => {
@@ -333,7 +308,7 @@ function BodyTabViewFactory(EventTranscriptView: typeof Component) {
 
 function RequestLocationPermissionFactory(
   permissions: Permissions,
-  onLocationResult: (permission: LocationPermission) => void,
+  onLocationResult: (permission: LocationPermission) => void
 ) {
   class RequestLocationPermission extends Component {
     render() {
@@ -358,7 +333,7 @@ function RequestLocationPermissionFactory(
 
 function RequestNotificationPermissionFactory(
   permissions: Permissions,
-  onNotificationResult: (granted: boolean) => void,
+  onNotificationResult: (granted: boolean) => void
 ) {
   class RequestNotificationPermission extends Component {
     render() {
