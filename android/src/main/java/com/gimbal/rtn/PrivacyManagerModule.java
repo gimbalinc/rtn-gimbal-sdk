@@ -45,17 +45,17 @@ public class PrivacyManagerModule extends PrivacyManagerSpec {
 
     @Override
     @ReactMethod
-    public void setUserConsent(int consentType, int state) {
-        PrivacyManager.ConsentType convertedConsentType = fromJSValue(PrivacyManager.ConsentType.class, consentType);
-        PrivacyManager.ConsentState convertedConsentState = fromJSValue(PrivacyManager.ConsentState.class, state);
+    public void setUserConsent(double consentType, double state) {
+        PrivacyManager.ConsentType convertedConsentType = fromJSValue(PrivacyManager.ConsentType.class, (int)consentType);
+        PrivacyManager.ConsentState convertedConsentState = fromJSValue(PrivacyManager.ConsentState.class, (int)state);
 
         PrivacyManager.getInstance().setUserConsent(convertedConsentType, convertedConsentState);
     }
 
     @Override
     @ReactMethod
-    public void getUserConsent(int consentType, Promise promise) {
-        PrivacyManager.ConsentType convertedConsentType = fromJSValue(PrivacyManager.ConsentType.class, consentType);
+    public void getUserConsent(double consentType, Promise promise) {
+        PrivacyManager.ConsentType convertedConsentType = fromJSValue(PrivacyManager.ConsentType.class, (int)consentType);
         if (convertedConsentType == null) {
             promise.reject(E_INVALID_CONSENT_VALUE, "Invalid consent type: " + consentType);
             return;
