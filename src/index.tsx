@@ -124,7 +124,8 @@ import type {
   ConsentStateSpec,
   GDPRConsentRequirementSpec,
   ConsentTypeSpec,
-  Spec as PrivacyManagerSpec } from './NativePrivacyManager';
+  Spec as PrivacyManagerSpec,
+} from './NativePrivacyManager';
 
 const PrivacyManagerModule = isTurboModuleEnabled
   ? require('./NativePrivacyManager').default
@@ -147,22 +148,22 @@ const {
   CONSENT_STATE_REFUSED,
   CONSENT_TYPE_PLACES,
   GDPR_CONSENT_REQUIREMENT_UNKNOWN,
-  GDPR_CONSENT_NOT_REQUIRED, 
-  GDPR_CONSENT_REQUIRED
+  GDPR_CONSENT_NOT_REQUIRED,
+  GDPR_CONSENT_REQUIRED,
 } = PrivacyManager.getConstants();
 
 export const ConsentState: ConsentStateSpec = {
   GRANTED: CONSENT_STATE_GRANTED,
   REFUSED: CONSENT_STATE_REFUSED,
-  UNKNOWN: CONSENT_STATE_UNKNOWN
+  UNKNOWN: CONSENT_STATE_UNKNOWN,
 };
 
 export const GDPRConsentRequirement: GDPRConsentRequirementSpec = {
   UNKNOWN: GDPR_CONSENT_REQUIREMENT_UNKNOWN,
   NOT_REQUIRED: GDPR_CONSENT_NOT_REQUIRED,
-  REQUIRED: GDPR_CONSENT_REQUIRED
+  REQUIRED: GDPR_CONSENT_REQUIRED,
 };
 
 export const ConsentType: ConsentTypeSpec = {
-  PLACES: CONSENT_TYPE_PLACES
+  PLACES: CONSENT_TYPE_PLACES,
 };

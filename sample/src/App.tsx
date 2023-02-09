@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { Component } from 'react';
 import {
   Button,
@@ -19,7 +20,7 @@ import {
   PrivacyManager,
   ConsentState,
   GDPRConsentRequirement,
-  ConsentType
+  ConsentType,
 } from 'rtn-gimbal-sdk';
 import type { Visit } from 'rtn-gimbal-sdk';
 // CommunicationManager
@@ -40,7 +41,7 @@ interface AppState {
 export function AppFactory(
   eventTranscript: EventTranscript,
   permissions: Permissions,
-  EventTranscriptView: typeof Component
+  EventTranscriptView: typeof Component,
 ) {
   class App extends Component<AppProps, AppState> {
     _placeListeners: EmitterSubscription[];
@@ -68,8 +69,8 @@ export function AppFactory(
       const Body = !this.state.notificationPermissionGranted
         ? RequestNotificationPermissionFactory(permissions, this.onNotificationResult)
         : !isLocationPermissionGranted
-        ? RequestLocationPermissionFactory(permissions, this.onLocationResult)
-        : BodyTabViewFactory(EventTranscriptView);
+            ? RequestLocationPermissionFactory(permissions, this.onLocationResult)
+            : BodyTabViewFactory(EventTranscriptView);
 
       return (
         <SafeAreaProvider>
@@ -94,7 +95,7 @@ export function AppFactory(
       this._addCommunicationListeners();
       this._updatePermissionState();
 
-      // AnalyticsManager.setUserAnalyticsID("YOUR_ANALYTICS_ID");
+      AnalyticsManager.setUserAnalyticsID('YOUR_ANALYTICS_ID');
       // AnalyticsManager.deleteUserAnalyticsID();
 
       this._setPlacesConsent(ConsentState.GRANTED);
@@ -139,7 +140,7 @@ export function AppFactory(
     }
 
     // Gimbal module
-    startGimbal = async () => {
+    startGimbal = async() => {
       if (!(await Gimbal.isStarted())) {
         console.log('Starting Gimbal');
         GimbalDebugger.enableDebugLogging();
@@ -149,7 +150,7 @@ export function AppFactory(
           new Date(),
           EventType.App,
           'Gimbal Started',
-          'Places / Communications / Est. Loc'
+          'Places / Communications / Est. Loc',
         );
       }
     };
@@ -169,9 +170,9 @@ export function AppFactory(
             new Date(visit.arrivalTimeInMillis),
             EventType.Place,
             visit.place.name,
-            'ARRIVED'
+            'ARRIVED',
           );
-        }
+        },
       );
 
       const visitStartWithDelaySubscription = placeEventEmitter.addListener(
@@ -183,10 +184,10 @@ export function AppFactory(
               new Date(visit.arrivalTimeInMillis),
               EventType.Place,
               visit.place.name,
-              `ARRIVED with delay: ${visit.delay} sec`
+              `ARRIVED with delay: ${visit.delay} sec`,
             );
           }
-        }
+        },
       );
 
       const visitEndSubscription = placeEventEmitter.addListener(
@@ -201,15 +202,15 @@ export function AppFactory(
             new Date(visit.departureTimeInMillis),
             EventType.Place,
             visit.place.name,
-            `DEPARTED with dwell: ${minutes}m${seconds < 10 ? '0' : ''}${seconds}s`
+            `DEPARTED with dwell: ${minutes}m${seconds < 10 ? '0' : ''}${seconds}s`,
           );
-        }
+        },
       );
 
       this._placeListeners.push(
         visitStartSubscription,
         visitStartWithDelaySubscription,
-        visitEndSubscription
+        visitEndSubscription,
       );
     }
 
@@ -222,6 +223,7 @@ export function AppFactory(
 
     _addCommunicationListeners() {
       if (this._communicationListeners.length > 0) {
+        // eslint-disable-next-line no-useless-return
         return;
       }
 
@@ -252,20 +254,19 @@ export function AppFactory(
       this._communicationListeners = [];
     }
 
-
     async _logGDPRConsentRequirement() {
       try {
         const requirement = await PrivacyManager.getGdprConsentRequirement();
 
         switch (requirement) {
           case GDPRConsentRequirement.REQUIRED:
-            console.log("GDPR consent required");
+            console.log('GDPR consent required');
             break;
           case GDPRConsentRequirement.NOT_REQUIRED:
-            console.log("GDPR consent not required");
+            console.log('GDPR consent not required');
             break;
           case GDPRConsentRequirement.UNKNOWN:
-            console.log("GDPR consent requirement unknown");
+            console.log('GDPR consent requirement unknown');
             break;
           default:
             console.log(`GDPR consent requirement cannot be determined: ${requirement}`);
@@ -281,25 +282,25 @@ export function AppFactory(
 
         switch (consentState) {
           case ConsentState.GRANTED:
-            console.log("Places consent state: granted");
+            console.log('Places consent state: granted');
             break;
           case ConsentState.REFUSED:
-            console.log("Places consent state: refused");
+            console.log('Places consent state: refused');
             break;
           case ConsentState.UNKNOWN:
-            console.log("Places consent state: unknown");
+            console.log('Places consent state: unknown');
             break;
           default:
-            console.log("Places consent state: --");
+            console.log('Places consent state: --');
         }
       } catch (err) {
         console.log(`Error getting user consent: ${err}`);
       }
     }
 
-     _setPlacesConsent(consentState: Int32) {
+    _setPlacesConsent(consentState: Int32) {
       PrivacyManager.setUserConsent(ConsentType.PLACES, consentState);
-     }
+    }
   }
 
   return App;
@@ -332,7 +333,7 @@ function BodyTabViewFactory(EventTranscriptView: typeof Component) {
 
 function RequestLocationPermissionFactory(
   permissions: Permissions,
-  onLocationResult: (permission: LocationPermission) => void
+  onLocationResult: (permission: LocationPermission) => void,
 ) {
   class RequestLocationPermission extends Component {
     render() {
@@ -357,7 +358,7 @@ function RequestLocationPermissionFactory(
 
 function RequestNotificationPermissionFactory(
   permissions: Permissions,
-  onNotificationResult: (granted: boolean) => void
+  onNotificationResult: (granted: boolean) => void,
 ) {
   class RequestNotificationPermission extends Component {
     render() {
@@ -413,5 +414,5 @@ const styles = StyleSheet.create({
   },
   important: {
     fontWeight: 'bold',
-  }
+  },
 });
