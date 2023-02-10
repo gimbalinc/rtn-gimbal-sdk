@@ -10,13 +10,24 @@ import {
 } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { TabView, SceneMap } from 'react-native-tab-view';
-import { Gimbal, GimbalDebugger, PlaceManager, PlaceManagerEvent, AnalyticsManager } from 'rtn-gimbal-sdk';
+import {
+  Gimbal,
+  GimbalDebugger,
+  PlaceManager,
+  PlaceManagerEvent,
+  AnalyticsManager,
+  PrivacyManager,
+  ConsentState,
+  GDPRConsentRequirement,
+  ConsentType,
+} from 'rtn-gimbal-sdk';
 import type { Visit } from 'rtn-gimbal-sdk';
 // CommunicationManager
 
 import { VisitsList } from './components/visits-list';
 import { LocationPermission, Permissions } from './utils/permissions';
 import { EventTranscript, EventType } from './utils/event-transcript';
+import type { Int32 } from 'react-native/Libraries/Types/CodegenTypes';
 
 interface AppProps {}
 
@@ -83,8 +94,12 @@ export function AppFactory(
       this._addCommunicationListeners();
       this._updatePermissionState();
 
-      // AnalyticsManager.setUserAnalyticsID("YOUR_ANALYTICS_ID");
-      AnalyticsManager.deleteUserAnalyticsID();
+      AnalyticsManager.setUserAnalyticsID('YOUR_ANALYTICS_ID');
+      // AnalyticsManager.deleteUserAnalyticsID();
+
+      this._setPlacesConsent(ConsentState.GRANTED);
+      this._logPlacesConsentState();
+      this._logGDPRConsentRequirement();
     }
 
     componentWillUnmount() {
@@ -205,36 +220,61 @@ export function AppFactory(
       this._placeListeners = [];
     }
 
-    _addCommunicationListeners() {
-      if (this._communicationListeners.length > 0) {
-        return;
-      }
-
-      // const communicationEventEmitter = new NativeEventEmitter(CommunicationManager);
-
-      // const notificationClickedSubscription = communicationEventEmitter.addListener(
-      //   'NotificationClicked',
-      //   communicationsList => {
-      //     console.log(`NotificationClicked: ${JSON.stringify(communicationsList)}`);
-      //     communicationsList.communications.forEach(communication =>
-      //       eventTranscript.append(
-      //         new Date(),
-      //         EventType.Communication,
-      //         communication.title,
-      //         'CLICKED'
-      //       )
-      //     );
-      //   }
-      // );
-      //
-      // this.communicationListeners = [notificationClickedSubscription];
-    }
+    _addCommunicationListeners() {}
 
     _removeCommunicationListeners() {
       this._communicationListeners.forEach((listener) => {
         listener.remove();
       });
       this._communicationListeners = [];
+    }
+
+    async _logGDPRConsentRequirement() {
+      try {
+        const requirement = await PrivacyManager.getGdprConsentRequirement();
+
+        switch (requirement) {
+          case GDPRConsentRequirement.REQUIRED:
+            console.log('GDPR consent required');
+            break;
+          case GDPRConsentRequirement.NOT_REQUIRED:
+            console.log('GDPR consent not required');
+            break;
+          case GDPRConsentRequirement.UNKNOWN:
+            console.log('GDPR consent requirement unknown');
+            break;
+          default:
+            console.log(`GDPR consent requirement cannot be determined: ${requirement}`);
+        }
+      } catch (err) {
+        console.log(`Error retrieving GDPR consent requirement: ${err}`);
+      }
+    }
+
+    async _logPlacesConsentState() {
+      try {
+        const consentState = await PrivacyManager.getUserConsent(ConsentType.PLACES);
+
+        switch (consentState) {
+          case ConsentState.GRANTED:
+            console.log('Places consent state: granted');
+            break;
+          case ConsentState.REFUSED:
+            console.log('Places consent state: refused');
+            break;
+          case ConsentState.UNKNOWN:
+            console.log('Places consent state: unknown');
+            break;
+          default:
+            console.log('Places consent state: --');
+        }
+      } catch (err) {
+        console.log(`Error getting user consent: ${err}`);
+      }
+    }
+
+    _setPlacesConsent(consentState: Int32) {
+      PrivacyManager.setUserConsent(ConsentType.PLACES, consentState);
     }
   }
 
@@ -349,5 +389,5 @@ const styles = StyleSheet.create({
   },
   important: {
     fontWeight: 'bold',
-  }
+  },
 });
