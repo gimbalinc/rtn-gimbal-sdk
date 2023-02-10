@@ -8,7 +8,6 @@
 # VSCode
 .vscode/
 jsconfig.json
-sample/.eslintrc.json
 
 # Xcode
 #
