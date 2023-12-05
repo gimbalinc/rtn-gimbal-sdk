@@ -11,11 +11,11 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		61543B60A96971728B52B850 /* libPods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9FAE35CA3CB7CD486965ED7 /* libPods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests.a */; };
+		1DFBF9624E618FF5920A1EB8 /* libPods-RtnGimbalSdkSample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F21370BB39C4196504707126 /* libPods-RtnGimbalSdkSample.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		8B322C17297A1A0A00722EB4 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B7FCF33296DEA8A00BB082F /* FontAwesome.ttf */; };
 		8B322C18297A1A0A00722EB4 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B7FCF34296DEA8A00BB082F /* MaterialIcons.ttf */; };
-		FACB4FE07F17AEBDB62CD789 /* libPods-RtnGimbalSdkSample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE6E5C994EDD2863FF3917F /* libPods-RtnGimbalSdkSample.a */; };
+		AF5BC815B2EADE4353A9650A /* libPods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CB2D9FB0A5C7AC526FEF33D /* libPods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,17 +39,18 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = RtnGimbalSdkSample/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = RtnGimbalSdkSample/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = RtnGimbalSdkSample/main.m; sourceTree = "<group>"; };
-		4FB5140FF0665A84B42D5852 /* Pods-RtnGimbalSdkSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RtnGimbalSdkSample.release.xcconfig"; path = "Target Support Files/Pods-RtnGimbalSdkSample/Pods-RtnGimbalSdkSample.release.xcconfig"; sourceTree = "<group>"; };
-		5B02C6111BFD9E6D5A7DC642 /* Pods-RtnGimbalSdkSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RtnGimbalSdkSample.debug.xcconfig"; path = "Target Support Files/Pods-RtnGimbalSdkSample/Pods-RtnGimbalSdkSample.debug.xcconfig"; sourceTree = "<group>"; };
-		6BE6E5C994EDD2863FF3917F /* libPods-RtnGimbalSdkSample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RtnGimbalSdkSample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1CB2D9FB0A5C7AC526FEF33D /* libPods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		38B6B697509DB2DED99F42FA /* Pods-RtnGimbalSdkSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RtnGimbalSdkSample.release.xcconfig"; path = "Target Support Files/Pods-RtnGimbalSdkSample/Pods-RtnGimbalSdkSample.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = RtnGimbalSdkSample/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8B603333292D8A3900E94A3A /* hermes.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = hermes.xcframework; path = "Pods/hermes-engine/destroot/Library/Frameworks/universal/hermes.xcframework"; sourceTree = "<group>"; };
 		8B603335292D92E900E94A3A /* libReact-hermes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-hermes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B7FCF33296DEA8A00BB082F /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		8B7FCF34296DEA8A00BB082F /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
-		9544EB1A2B5242DB64FB2F95 /* Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests.release.xcconfig"; path = "Target Support Files/Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests/Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests.release.xcconfig"; sourceTree = "<group>"; };
-		A9FAE35CA3CB7CD486965ED7 /* libPods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CCCE89F4DF15CCCCB8DA040 /* Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests.debug.xcconfig"; path = "Target Support Files/Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests/Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A42FE170351BB907C80CEEE5 /* Pods-RtnGimbalSdkSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RtnGimbalSdkSample.debug.xcconfig"; path = "Target Support Files/Pods-RtnGimbalSdkSample/Pods-RtnGimbalSdkSample.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F21370BB39C4196504707126 /* libPods-RtnGimbalSdkSample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RtnGimbalSdkSample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FEB9FC650B4714820BD76B68 /* Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests.release.xcconfig"; path = "Target Support Files/Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests/Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61543B60A96971728B52B850 /* libPods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests.a in Frameworks */,
+				AF5BC815B2EADE4353A9650A /* libPods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,7 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FACB4FE07F17AEBDB62CD789 /* libPods-RtnGimbalSdkSample.a in Frameworks */,
+				1DFBF9624E618FF5920A1EB8 /* libPods-RtnGimbalSdkSample.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,8 +110,8 @@
 				8B603335292D92E900E94A3A /* libReact-hermes.a */,
 				8B603333292D8A3900E94A3A /* hermes.xcframework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				6BE6E5C994EDD2863FF3917F /* libPods-RtnGimbalSdkSample.a */,
-				A9FAE35CA3CB7CD486965ED7 /* libPods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests.a */,
+				F21370BB39C4196504707126 /* libPods-RtnGimbalSdkSample.a */,
+				1CB2D9FB0A5C7AC526FEF33D /* libPods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -158,10 +159,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5B02C6111BFD9E6D5A7DC642 /* Pods-RtnGimbalSdkSample.debug.xcconfig */,
-				4FB5140FF0665A84B42D5852 /* Pods-RtnGimbalSdkSample.release.xcconfig */,
-				0D16380D030C5789D26A6826 /* Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests.debug.xcconfig */,
-				9544EB1A2B5242DB64FB2F95 /* Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests.release.xcconfig */,
+				A42FE170351BB907C80CEEE5 /* Pods-RtnGimbalSdkSample.debug.xcconfig */,
+				38B6B697509DB2DED99F42FA /* Pods-RtnGimbalSdkSample.release.xcconfig */,
+				8CCCE89F4DF15CCCCB8DA040 /* Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests.debug.xcconfig */,
+				FEB9FC650B4714820BD76B68 /* Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -173,12 +174,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "RtnGimbalSdkSampleTests" */;
 			buildPhases = (
-				77D83B7DCDA69F39D3F3D0B4 /* [CP] Check Pods Manifest.lock */,
+				B0C9365C911BB40C2D035F38 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				008614E80004A5512FBE4867 /* [CP] Embed Pods Frameworks */,
-				CDFC512DB3A5B001840FFBB5 /* [CP] Copy Pods Resources */,
+				22308F8EEFA714B46B297736 /* [CP] Embed Pods Frameworks */,
+				A28CD18F3708C240284FC85E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -194,14 +195,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "RtnGimbalSdkSample" */;
 			buildPhases = (
-				0AC5EC49933298B7DDAC30F0 /* [CP] Check Pods Manifest.lock */,
+				53E65650BCFF542C60D80690 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				F1A59DD13052CA920C738B76 /* [CP] Embed Pods Frameworks */,
-				239D4786A19308AD8D310101 /* [CP] Copy Pods Resources */,
+				EAD4FACAB0FF5A27442D1C48 /* [CP] Embed Pods Frameworks */,
+				A9EB1347A7DE3020F51E9DA6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -270,23 +271,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		008614E80004A5512FBE4867 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests/Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests/Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests/Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -303,7 +287,24 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		0AC5EC49933298B7DDAC30F0 /* [CP] Check Pods Manifest.lock */ = {
+		22308F8EEFA714B46B297736 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests/Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests/Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests/Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		53E65650BCFF542C60D80690 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -325,7 +326,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		239D4786A19308AD8D310101 /* [CP] Copy Pods Resources */ = {
+		A28CD18F3708C240284FC85E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests/Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests/Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests/Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A9EB1347A7DE3020F51E9DA6 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -342,7 +360,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RtnGimbalSdkSample/Pods-RtnGimbalSdkSample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		77D83B7DCDA69F39D3F3D0B4 /* [CP] Check Pods Manifest.lock */ = {
+		B0C9365C911BB40C2D035F38 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -364,21 +382,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CDFC512DB3A5B001840FFBB5 /* [CP] Copy Pods Resources */ = {
+		EAD4FACAB0FF5A27442D1C48 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests/Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-RtnGimbalSdkSample/Pods-RtnGimbalSdkSample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests/Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-RtnGimbalSdkSample/Pods-RtnGimbalSdkSample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests/Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RtnGimbalSdkSample/Pods-RtnGimbalSdkSample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F1A59DD13052CA920C738B76 /* [CP] Embed Pods Frameworks */ = {
@@ -451,7 +469,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0D16380D030C5789D26A6826 /* Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests.debug.xcconfig */;
+			baseConfigurationReference = 8CCCE89F4DF15CCCCB8DA040 /* Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -478,7 +496,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9544EB1A2B5242DB64FB2F95 /* Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests.release.xcconfig */;
+			baseConfigurationReference = FEB9FC650B4714820BD76B68 /* Pods-RtnGimbalSdkSample-RtnGimbalSdkSampleTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -502,7 +520,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B02C6111BFD9E6D5A7DC642 /* Pods-RtnGimbalSdkSample.debug.xcconfig */;
+			baseConfigurationReference = A42FE170351BB907C80CEEE5 /* Pods-RtnGimbalSdkSample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -526,7 +544,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gimbal.rtnsdksample;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = org.reactjs.native.example.RNGimbalDemo;
 				PRODUCT_NAME = RtnGimbalSdkSample;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -536,7 +555,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4FB5140FF0665A84B42D5852 /* Pods-RtnGimbalSdkSample.release.xcconfig */;
+			baseConfigurationReference = 38B6B697509DB2DED99F42FA /* Pods-RtnGimbalSdkSample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -559,7 +578,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gimbal.rtnsdksample;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = org.reactjs.native.example.RNGimbalDemo;
 				PRODUCT_NAME = RtnGimbalSdkSample;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -627,6 +647,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "$(inherited)";
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DFOLLY_NO_CONFIG",
@@ -691,6 +712,7 @@
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = "$(inherited)";
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DFOLLY_NO_CONFIG",
