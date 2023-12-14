@@ -9,6 +9,8 @@ const LINKING_ERROR =
 // @ts-expect-error
 const isTurboModuleEnabled = global.__turboModuleProxy != null;
 
+/* ============================================================================================= */
+
 import type { Spec as GimbalSpec } from './NativeGimbal';
 
 const GimbalModule = isTurboModuleEnabled
@@ -25,6 +27,8 @@ export const Gimbal: GimbalSpec = GimbalModule
         },
       }
     );
+
+/* ============================================================================================= */
 
 import type {
   Spec as PlaceManagerSpec,
@@ -77,6 +81,8 @@ export const PlaceManagerEvent: PlaceManagerEventSpec = {
   LOCATION_DETECTED: EVENT_LOCATION_DETECTED,
 };
 
+/* ============================================================================================= */
+
 import type { Spec as GimbalDebuggerSpec } from './NativeGimbalDebugger';
 
 const GimbalDebuggerModule = isTurboModuleEnabled
@@ -93,3 +99,71 @@ export const GimbalDebugger: GimbalDebuggerSpec = GimbalDebuggerModule
         },
       }
     );
+
+/* ============================================================================================= */
+
+import type { Spec as AnalyticsManagerSpec } from './NativeAnalyticsManager';
+
+const AnalyticsManagerModule = isTurboModuleEnabled
+  ? require('./NativeAnalyticsManager').default
+  : NativeModules.RtnGimbalAnalyticsManager;
+
+export const AnalyticsManager: AnalyticsManagerSpec = AnalyticsManagerModule
+  ? AnalyticsManagerModule
+  : new Proxy(
+      {},
+      {
+        get() {
+          throw new Error(LINKING_ERROR);
+        },
+      }
+    );
+/* ============================================================================================= */
+
+import type {
+  ConsentStateSpec,
+  GDPRConsentRequirementSpec,
+  ConsentTypeSpec,
+  Spec as PrivacyManagerSpec,
+} from './NativePrivacyManager';
+
+const PrivacyManagerModule = isTurboModuleEnabled
+  ? require('./NativePrivacyManager').default
+  : NativeModules.RtnGimbalPrivacyManager;
+
+export const PrivacyManager: PrivacyManagerSpec = PrivacyManagerModule
+  ? PrivacyManagerModule
+  : new Proxy(
+      {},
+      {
+        get() {
+          throw new Error(LINKING_ERROR);
+        },
+      }
+    );
+
+const {
+  CONSENT_STATE_UNKNOWN,
+  CONSENT_STATE_GRANTED,
+  CONSENT_STATE_REFUSED,
+  CONSENT_TYPE_PLACES,
+  GDPR_CONSENT_REQUIREMENT_UNKNOWN,
+  GDPR_CONSENT_NOT_REQUIRED,
+  GDPR_CONSENT_REQUIRED,
+} = PrivacyManager.getConstants();
+
+export const ConsentState: ConsentStateSpec = {
+  GRANTED: CONSENT_STATE_GRANTED,
+  REFUSED: CONSENT_STATE_REFUSED,
+  UNKNOWN: CONSENT_STATE_UNKNOWN,
+};
+
+export const GDPRConsentRequirement: GDPRConsentRequirementSpec = {
+  UNKNOWN: GDPR_CONSENT_REQUIREMENT_UNKNOWN,
+  NOT_REQUIRED: GDPR_CONSENT_NOT_REQUIRED,
+  REQUIRED: GDPR_CONSENT_REQUIRED,
+};
+
+export const ConsentType: ConsentTypeSpec = {
+  PLACES: CONSENT_TYPE_PLACES,
+};

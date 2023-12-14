@@ -24,6 +24,10 @@ public class GimbalPackage extends TurboReactPackage {
                 return new PlaceManagerModule(reactContext);
             case GimbalDebuggerModule.NAME:
                 return new GimbalDebuggerModule(reactContext);
+            case AnalyticsManagerModule.NAME:
+                return new AnalyticsManagerModule(reactContext);
+            case PrivacyManagerModule.NAME:
+                return new PrivacyManagerModule(reactContext);
             default:
                 return null;
         }
@@ -54,6 +58,22 @@ public class GimbalPackage extends TurboReactPackage {
                 new ReactModuleInfo(PlaceManagerModule.NAME, PlaceManagerModule.class.getName(),
                     false,// canOverrideExistingModule
                     true, // needsEagerInit
+                    true, // hasConstants
+                    false, // isCxxModule
+                    isTurboModule // isTurboModule
+                ));
+            moduleInfos.put(AnalyticsManagerModule.NAME,
+                new ReactModuleInfo(AnalyticsManagerModule.NAME, AnalyticsManagerModule.class.getName(),
+                    false,// canOverrideExistingModule
+                    false, // needsEagerInit
+                    false, // hasConstants
+                    false, // isCxxModule
+                    isTurboModule // isTurboModule
+                ));
+            moduleInfos.put(PrivacyManagerModule.NAME,
+                new ReactModuleInfo(PrivacyManagerModule.NAME, PrivacyManagerModule.class.getName(),
+                    false,// canOverrideExistingModule
+                    false, // needsEagerInit
                     true, // hasConstants
                     false, // isCxxModule
                     isTurboModule // isTurboModule
