@@ -69,7 +69,7 @@ PODS:
     - FlipperKit/Core
     - FlipperKit/FlipperKitNetworkPlugin
   - fmt (6.2.1)
-  - Gimbal (2.93)
+  - Gimbal (2.93.1)
   - glog (0.3.5)
   - hermes-engine (0.72.0):
     - hermes-engine/Pre-built (= 0.72.0)
@@ -505,8 +505,8 @@ PODS:
     - React-Core
   - RNPermissions (3.6.1):
     - React-Core
-  - rtn-gimbal-sdk (0.1.2):
-    - Gimbal
+  - rtn-gimbal-sdk (0.3.0):
+    - Gimbal (~> 2.93.1)
     - React-Core
   - SocketRocket (0.6.0)
   - Yoga (1.14.0)
@@ -719,7 +719,7 @@ SPEC CHECKSUMS:
   Flipper-PeerTalk: 116d8f857dc6ef55c7a5a75ea3ceaafe878aadc9
   FlipperKit: 2efad7007d6745a3f95e4034d547be637f89d3f6
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
-  Gimbal: f199f5ffd4e02ce05792e3c7f61f0f2a8cb2ebf9
+  Gimbal: fe79da2a4be9ca26a1ea700857e131899b02559c
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
   hermes-engine: c85f703623cb12d7e1d9db91afe53b3ea8aa7219
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
@@ -764,11 +764,11 @@ SPEC CHECKSUMS:
   ReactCommon: 517b45ed311ba9146aa8b55a8ef6617425f7448e
   RNCAsyncStorage: c913ede1fa163a71cea118ed4670bbaaa4b511bb
   RNPermissions: dcdb7b99796bbeda6975a6e79ad519c41b251b1c
-  rtn-gimbal-sdk: 1c2227d46c935b4cd53b640ceb491efc03f76624
+  rtn-gimbal-sdk: 96c7278a96a7d0c7c17283ded5e71cc63162d868
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
   Yoga: 1d6727ed193122f6adaf435c3de1a768326ff83b
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
 PODFILE CHECKSUM: 15b509d606f22f5f6303ca8aa6bd436422acb420
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.15.2
