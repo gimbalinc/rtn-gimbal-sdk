@@ -161,7 +161,7 @@ RCT_EXPORT_METHOD(isMonitoring:(RCTPromiseResolveBlock)resolve
     [self safelyAddObject:visit.visitID andKey:EVENT_MAP_KEY_VISIT_ID toMap:&map];
     [self safelyAddObject:@([visit.arrivalDate timeIntervalSince1970]*1000) andKey:EVENT_MAP_KEY_ARRIVAL_TIME toMap:&map];
     [self safelyAddObject:@([visit.departureDate timeIntervalSince1970]*1000) andKey:EVENT_MAP_KEY_DEPARTURE_TIME toMap:&map];
-    [self safelyAddObject:@(visit.dwellTime) andKey:EVENT_MAP_KEY_DWELL_TIME toMap:&map];
+    [self safelyAddObject:@(visit.dwellTime * 1000) andKey:EVENT_MAP_KEY_DWELL_TIME toMap:&map];
 
     return map;
 }

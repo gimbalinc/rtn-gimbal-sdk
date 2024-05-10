@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.3.0] - 2024-4-05
 
 ### Changed
-- Bump iOS Gimbal SDK version 2.93.0 -> 2.93.1
+- Bump iOS Gimbal SDK version 2.93.0 -> 2.94.0
 - Bump Android Gimbal SDK version 4.9.2 -> 4.10.0
 
 ## [0.2.0] - 2023-12-14
