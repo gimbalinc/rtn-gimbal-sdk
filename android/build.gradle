@@ -139,7 +139,7 @@ repositories {
 dependencies {
    //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
-  api 'com.gimbal.android.v4:gimbal-sdk:4.9.2'
+  api 'com.gimbal.android.v4:gimbal-sdk:4.10.0'
   implementation 'com.gimbal.android.v4:gimbal-slf4j-impl:4.9.1'
   // From node_modules
 }
