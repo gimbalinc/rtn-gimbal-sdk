@@ -23,13 +23,13 @@ static NSInteger E_VALUE_UNKNOWN_TYPE = -1;
 {
     __block facebook::react::ModuleConstants<JS::NativePrivacyManager::Constants> constants;
     constants = facebook::react::typedConstants<JS::NativePrivacyManager::Constants>({
-       .GDPR_CONSENT_NOT_REQUIRED = GMBLGDPRConsentNotRequired,
-       .GDPR_CONSENT_REQUIRED = GMBLGDPRConsentRequired,
-       .GDPR_CONSENT_REQUIREMENT_UNKNOWN = GMBLGDPRConsentRequirementUnknown,
-       .CONSENT_TYPE_PLACES = GMBLPlacesConsent,
        .CONSENT_STATE_UNKNOWN = GMBLConsentUnknown,
        .CONSENT_STATE_GRANTED = GMBLConsentGranted,
        .CONSENT_STATE_REFUSED = GMBLConsentRefused,
+       .CONSENT_TYPE_PLACES = GMBLPlacesConsent,
+       .GDPR_CONSENT_REQUIREMENT_UNKNOWN = GMBLGDPRConsentRequirementUnknown,
+       .GDPR_CONSENT_NOT_REQUIRED = GMBLGDPRConsentNotRequired,
+       .GDPR_CONSENT_REQUIRED = GMBLGDPRConsentRequired,
     });
     return constants;
 }
@@ -65,13 +65,13 @@ RCT_EXPORT_METHOD(getGdprConsentRequirement:(RCTPromiseResolveBlock)resolve
     resolve([NSNumber numberWithInteger:consentRequirement]);
 }
 
-RCT_EXPORT_METHOD(setUserConsent:(double)consentType
-                  toState:(double)state)
+RCT_EXPORT_METHOD(setUserConsent:(NSInteger)consentType
+                  state:(NSInteger)state)
 {
     [GMBLPrivacyManager setUserConsentFor:(GMBLConsentType)consentType toState:(GMBLConsentState)state];
 }
 
-RCT_EXPORT_METHOD(getUserConsent:(double)consentType
+RCT_EXPORT_METHOD(getUserConsent:(NSInteger)consentType
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {

@@ -56,11 +56,12 @@
   "devDependencies": {
     "@arkweid/lefthook": "^0.7.7",
     "@commitlint/config-conventional": "^17.0.2",
-    "@react-native-community/eslint-config": "^3.0.2",
+    "@react-native/babel-preset": "0.85.3",
+    "@react-native/eslint-config": "0.85.3",
+    "@react-native/jest-preset": "0.85.3",
     "@release-it/conventional-changelog": "^5.0.0",
     "@types/jest": "^28.1.2",
-    "@types/react": "~18.0.26",
-    "@types/react-native": "0.70.6",
+    "@types/react": "^19.2.0",
     "commitlint": "^17.0.2",
     "del-cli": "^5.0.0",
     "eslint": "^8.4.1",
@@ -69,14 +70,17 @@
     "jest": "^28.1.1",
     "pod-install": "^0.1.0",
     "prettier": "^2.0.5",
-    "react": "18.2.0",
-    "react-native": "0.72.0",
+    "react": "19.2.3",
+    "react-native": "0.85.3",
     "react-native-builder-bob": "^0.20.1",
     "release-it": "^15.0.0",
     "typescript": "^4.5.2"
   },
   "resolutions": {
-    "@types/react": "18.0.26"
+    "@types/react": "^19.2.0"
+  },
+  "engines": {
+    "node": ">=22.11.0"
   },
   "peerDependencies": {
     "react": "*",
@@ -91,7 +95,7 @@
     }
   },
   "jest": {
-    "preset": "react-native",
+    "preset": "@react-native/jest-preset",
     "modulePathIgnorePatterns": [
       "<rootDir>/sample/node_modules",
       "<rootDir>/lib/"
@@ -122,7 +126,7 @@
   "eslintConfig": {
     "root": true,
     "extends": [
-      "@react-native-community",
+      "@react-native",
       "prettier"
     ],
     "rules": {
