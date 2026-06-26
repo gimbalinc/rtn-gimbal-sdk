@@ -56,7 +56,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  [Gimbal setAPIKey:@"fef3c46d-f120-4b2d-b0e7-fc1ac32c88c9" options:nil];
+  [Gimbal setAPIKey:@"YOUR GIMBAL APP API KEY" options:nil];
 
   self.reactNativeDelegate = [ReactNativeDelegate new];
   self.reactNativeDelegate.dependencyProvider = [RCTAppDependencyProvider new];
