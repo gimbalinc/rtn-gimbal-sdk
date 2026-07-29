@@ -43,6 +43,8 @@
 	<string>Let this sample app trigger Gimbal location-based events</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Let this sample app trigger Gimbal location-based events while the app is in use</string>
+	<key>RCTNewArchEnabled</key>
+	<true/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>FontAwesome.ttf</string>

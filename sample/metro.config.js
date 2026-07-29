@@ -2,7 +2,7 @@ const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
 const path = require('path');
 const root = path.resolve(__dirname, '..');
 const pak = require('../package.json');
-const exclusionList = require('metro-config/src/defaults/exclusionList');
+const exclusionList = require('metro-config/private/defaults/exclusionList').default;
 const modules = Object.keys({
   ...pak.peerDependencies,
 });
@@ -16,14 +16,19 @@ const modules = Object.keys({
 const config = {
   projectRoot: __dirname,
   resolver: {
-    blacklistRE: exclusionList(
-      modules.map((m) => new RegExp(`^${escape(path.join(root, 'node_modules', m))}\\/.*$`))
+    blockList: exclusionList(
+      modules.map((m) => path.join(root, 'node_modules', m))
     ),
-    extraNodeModules: modules.reduce((acc, name) => {
-      acc[name] = path.join(__dirname, 'node_modules', name);
-      return acc;
-    }, {}),
-    sourceExts: ['jsx', 'js', 'ts', 'tsx', 'cjs', 'json'], //add here
+    extraNodeModules: modules.reduce(
+      (acc, name) => {
+        acc[name] = path.join(__dirname, 'node_modules', name);
+        return acc;
+      },
+      // Resolve the library by its package name to the repo root so the
+      // sample app loads the local source directly.
+      { [pak.name]: root }
+    ),
+    sourceExts: ['jsx', 'js', 'ts', 'tsx', 'cjs', 'json'],
   },
   transformer: {
     getTransformOptions: async () => ({

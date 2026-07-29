@@ -1,47 +1,36 @@
 #import "AppDelegate.h"
 
+#import <Gimbal/Gimbal.h>
 #import <React/RCTBundleURLProvider.h>
 
-#import <Gimbal/Gimbal.h>
+#if __has_include(<React-RCTAppDelegate/RCTDefaultReactNativeFactoryDelegate.h>)
+#import <React-RCTAppDelegate/RCTDefaultReactNativeFactoryDelegate.h>
+#import <React-RCTAppDelegate/RCTReactNativeFactory.h>
+#elif __has_include(<React_RCTAppDelegate/RCTDefaultReactNativeFactoryDelegate.h>)
+#import <React_RCTAppDelegate/RCTDefaultReactNativeFactoryDelegate.h>
+#import <React_RCTAppDelegate/RCTReactNativeFactory.h>
+#else
+#import "RCTDefaultReactNativeFactoryDelegate.h"
+#import "RCTReactNativeFactory.h"
+#endif
 
-#import <React/RCTRootView.h>
+#if __has_include(<ReactAppDependencyProvider/RCTAppDependencyProvider.h>)
+#import <ReactAppDependencyProvider/RCTAppDependencyProvider.h>
+#else
+#import "RCTAppDependencyProvider.h"
+#endif
 
-@implementation AppDelegate
+@interface ReactNativeDelegate : RCTDefaultReactNativeFactoryDelegate
+@end
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-  [Gimbal setAPIKey:@"YOUR_API_KEY" options:nil];
-  RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
-  RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
-                                                   moduleName:@"RtnGimbalSdkSample"
-                                            initialProperties:@{}];
-
-  if (@available(iOS 13.0, *)) {
-    rootView.backgroundColor = [UIColor systemBackgroundColor];
-  } else {
-    rootView.backgroundColor = [UIColor whiteColor];
-  }
-
-  self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-  UIViewController *rootViewController = [UIViewController new];
-  rootViewController.view = rootView;
-  self.window.rootViewController = rootViewController;
-  [self.window makeKeyAndVisible];
-  return YES;
-}
-
-/// This method controls whether the `concurrentRoot`feature of React18 is turned on or off.
-///
-/// @see: https://reactjs.org/blog/2022/03/29/react-v18.html
-/// @note: This requires to be rendering on Fabric (i.e. on the New Architecture).
-/// @return: `true` if the `concurrentRoot` feture is enabled. Otherwise, it returns `false`.
-- (BOOL)concurrentRootEnabled
-{
-  // Switch this bool to turn on and off the concurrent root
-  return true;
-}
+@implementation ReactNativeDelegate
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
+{
+  return [self bundleURL];
+}
+
+- (NSURL *)bundleURL
 {
 #if DEBUG
   return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index"];
@@ -50,43 +39,36 @@
 #endif
 }
 
-#ifdef RCT_NEW_ARCH_ENABLED
-
-#pragma mark - RCTCxxBridgeDelegate
-
-- (std::unique_ptr<facebook::react::JSExecutorFactory>)jsExecutorFactoryForBridge:(RCTBridge *)bridge
+- (void)customizeRootView:(RCTRootView *)rootView
 {
-  _turboModuleManager = [[RCTTurboModuleManager alloc] initWithBridge:bridge
-                                                             delegate:self
-                                                            jsInvoker:bridge.jsCallInvoker];
-  return RCTAppSetupDefaultJsExecutorFactory(bridge, _turboModuleManager);
+  // Avoid systemBackgroundColor before the view is in a window hierarchy (iOS 26+).
+  rootView.backgroundColor = [UIColor whiteColor];
 }
 
-#pragma mark RCTTurboModuleManagerDelegate
+@end
 
-- (Class)getModuleClassFromName:(const char *)name
+@interface AppDelegate ()
+@property (nonatomic, strong) ReactNativeDelegate *reactNativeDelegate;
+@property (nonatomic, strong) RCTReactNativeFactory *reactNativeFactory;
+@end
+
+@implementation AppDelegate
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  return RCTCoreModulesClassProvider(name);
-}
+  [Gimbal setAPIKey:@"YOUR GIMBAL APP API KEY" options:nil];
 
-- (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:(const std::string &)name
-                                                      jsInvoker:(std::shared_ptr<facebook::react::CallInvoker>)jsInvoker
-{
-  return nullptr;
-}
+  self.reactNativeDelegate = [ReactNativeDelegate new];
+  self.reactNativeDelegate.dependencyProvider = [RCTAppDependencyProvider new];
+  self.reactNativeFactory = [[RCTReactNativeFactory alloc] initWithDelegate:self.reactNativeDelegate];
 
-- (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:(const std::string &)name
-                                                     initParams:
-                                                         (const facebook::react::ObjCTurboModule::InitParams &)params
-{
-  return nullptr;
-}
+  self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
-- (id<RCTTurboModule>)getModuleInstanceFromClass:(Class)moduleClass
-{
-  return RCTAppSetupDefaultModuleFromClass(moduleClass);
-}
+  [self.reactNativeFactory startReactNativeWithModuleName:@"RtnGimbalSdkSample"
+                                                 inWindow:self.window
+                                            launchOptions:launchOptions];
 
-#endif
+  return YES;
+}
 
 @end

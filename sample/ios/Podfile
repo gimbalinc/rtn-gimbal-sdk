@@ -4,18 +4,8 @@ require Pod::Executable.execute_command('node', ['-p',
     "react-native/scripts/react_native_pods.rb",
     {paths: [process.argv[1]]},
   )', __dir__]).strip
-platform :ios, min_ios_version_supported
+platform :ios, '15.1'
 prepare_react_native_project!
-# If you are using a `react-native-flipper` your iOS build will fail when `NO_FLIPPER=1` is set.
-# because `react-native-flipper` depends on (FlipperKit,...) that will be excluded
-#
-# To fix this you can also exclude `react-native-flipper` using a `react-native.config.js`
-# ```js
-# module.exports = {
-#   dependencies: {
-#     ...(process.env.NO_FLIPPER ? { 'react-native-flipper': { platforms: { ios: null } } } : {}),
-# ```
-flipper_config = ENV['NO_FLIPPER'] == "1" ? FlipperConfiguration.disabled : FlipperConfiguration.enabled
 linkage = ENV['USE_FRAMEWORKS']
 if linkage != nil
   Pod::UI.puts "Configuring Pod with #{linkage}ally linked Frameworks".green
@@ -31,19 +21,8 @@ target 'RtnGimbalSdkSample' do
   pod 'Permission-LocationWhenInUse', :path => "#{permissions_path}/LocationWhenInUse"
   pod 'Permission-Notifications', :path => "#{permissions_path}/Notifications"
 
-  # Flags change depending on the env values.
-  flags = get_default_flags()
-
   use_react_native!(
     :path => config[:reactNativePath],
-    # Hermes is now enabled by default. Disable by setting this flag to false.
-    :hermes_enabled => flags[:hermes_enabled],
-    :fabric_enabled => flags[:fabric_enabled],
-    # Enables Flipper.
-    #
-    # Note that if you have use_frameworks! enabled, Flipper will not work and
-    # you should disable the next line.
-    :flipper_configuration => flipper_config,
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
@@ -60,6 +39,62 @@ target 'RtnGimbalSdkSample' do
       config[:reactNativePath],
       :mac_catalyst_enabled => false
     )
-    __apply_Xcode_12_5_M1_post_install_workaround(installer)
+
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |build_configuration|
+        build_configuration.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.1'
+
+        other_cxx_flags = build_configuration.build_settings['OTHER_CPLUSPLUSFLAGS'] || ['$(inherited)']
+        other_cxx_flags = [other_cxx_flags] unless other_cxx_flags.is_a?(Array)
+        unless other_cxx_flags.include?('-DFOLLY_CFG_NO_COROUTINES=1')
+          other_cxx_flags << '-DFOLLY_CFG_NO_COROUTINES=1'
+        end
+        build_configuration.build_settings['OTHER_CPLUSPLUSFLAGS'] = other_cxx_flags
+
+        preprocessor_definitions =
+          build_configuration.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] || ['$(inherited)']
+        preprocessor_definitions = [preprocessor_definitions] unless preprocessor_definitions.is_a?(Array)
+        unless preprocessor_definitions.include?('FOLLY_CFG_NO_COROUTINES=1')
+          preprocessor_definitions << 'FOLLY_CFG_NO_COROUTINES=1'
+        end
+        build_configuration.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] = preprocessor_definitions
+      end
+    end
+
+    # AppDelegate.mm/main.m are in the app project, not the Pods project,
+    # so apply the Folly no-coroutines define to the user targets too.
+    installer.aggregate_targets.each do |aggregate_target|
+      user_project = aggregate_target.user_project
+      next if user_project.nil?
+      user_project.native_targets.each do |native_target|
+        native_target.build_configurations.each do |build_configuration|
+          cxx = build_configuration.build_settings['OTHER_CPLUSPLUSFLAGS'] || ['$(inherited)']
+          cxx = [cxx] unless cxx.is_a?(Array)
+          cxx << '-DFOLLY_CFG_NO_COROUTINES=1' unless cxx.include?('-DFOLLY_CFG_NO_COROUTINES=1')
+          build_configuration.build_settings['OTHER_CPLUSPLUSFLAGS'] = cxx
+
+          defs = build_configuration.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] || ['$(inherited)']
+          defs = [defs] unless defs.is_a?(Array)
+          defs << 'FOLLY_CFG_NO_COROUTINES=1' unless defs.include?('FOLLY_CFG_NO_COROUTINES=1')
+          build_configuration.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] = defs
+        end
+      end
+      user_project.save
+    end
+
+    # CI fallback for environments where Folly coroutine headers are still referenced.
+    folly_roots = ['Pods/RCT-Folly', 'Pods/ReactNativeDependencies']
+    folly_roots.each do |folly_root|
+      next unless Dir.exist?(folly_root)
+
+      system("chmod -R u+w #{folly_root}")
+      Dir.glob("#{folly_root}/**/Portability.h").each do |folly_portability_header|
+        text = File.read(folly_portability_header)
+        patched = text.gsub('#define FOLLY_HAS_COROUTINES 1', '#define FOLLY_HAS_COROUTINES 0')
+        if patched != text
+          File.open(folly_portability_header, 'w') { |file| file.puts patched }
+        end
+      end
+    end
   end
 end

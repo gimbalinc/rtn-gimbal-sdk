@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] - 2026-06-26
+
+### Changed
+- Bump React Native version 0.72.0 -> 0.85.3
+- Bump React version 18 -> 19.2.3
+- Adopt the React Native New Architecture (TurboModules/Fabric) defaults
+- Bump minimum iOS version 13.0 -> 15.1
+- Require Node.js >= 22.11.0
+- Migrate Jest preset to the new `@react-native/jest-preset` package
+
+### Fixed
+- Correct iOS `PrivacyManager` consent method argument types  to match the codegen TurboModule spec
+
 ## [0.3.1] - 2024-7-29
 - Change iOS Gimbal SDK dependency to GimbalXCFramework
 
